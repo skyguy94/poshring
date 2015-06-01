@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Test assembly for poshring.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Care Evolution")]
-[assembly: AssemblyProduct("CEDevEnvironment")]
+[assembly: AssemblyProduct("poshring")]
 [assembly: AssemblyCopyright("Copyright © CareEvolution 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
