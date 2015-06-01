@@ -1,0 +1,17 @@
+<entry>
+    <id>poshring</id>
+    <title type="text">Poshring</title>
+    <summary type="text">Powershell credential management cmdlets via the Win32 cred api.</summary>
+    <updated>2011-05-01T15:52:10-07:00</updated>
+    <author>
+      <name>Richard Melton</name>
+    </author>    
+    <content type="application/zip" src="github" />
+    <psget:properties>
+      <psget:ModuleName>poshring</psget:ModuleName>
+      <psget:ProjectUrl>https://github.com/skyguy94/poshring</psget:ProjectUrl> 
+      <psget:NoPostInstallHook>[true]</psget:NoPostInstallHook> 
+      <psget:PostInstallHook>[none]</psget:PostInstallHook>
+      <psget:PostUpdateHook>[none]</psget:PostUpdateHook>         
+    </psget:properties>
+  </entry>
