@@ -3,7 +3,7 @@ using System.Management.Automation;
 
 namespace poshring.cmdlets
 {
-    [Cmdlet(VerbsCommon.Set, "Credential")]
+    [Cmdlet(VerbsCommon.Set, "PSCredential")]
     public class SetCredentialCommand : Cmdlet
     {
         [Parameter(Mandatory = true)]
