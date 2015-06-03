@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 
@@ -83,8 +84,20 @@ namespace poshring
             var result = UnsafeAdvapi32.CredWriteW(ref _nativeCredential, 0);
             if (!result)
             {
-                var error = (CredentialErrors) Marshal.GetLastWin32Error();
-                throw new CredentialManagerException(error, "Could not save credential.");
+                var error = (CredentialErrors)Marshal.GetLastWin32Error();
+                switch (error)
+                {
+                    case CredentialErrors.Success:
+                    case CredentialErrors.NotFound:
+                        break;
+                    case CredentialErrors.BadUsername:
+                        throw new InvalidOperationException("UserName was not specified correctly.");
+                    case CredentialErrors.NoSuchLogonSession:
+                    case CredentialErrors.InvalidFlags:
+                        throw new Win32Exception((int)error);
+                    default:
+                        throw new InvalidOperationException("Unexpected error saving credential.");
+                }
             }
         }
 

@@ -17,6 +17,8 @@ namespace poshring
                 var error = (CredentialErrors) Marshal.GetLastWin32Error();
                 switch (error)
                 {
+                    case CredentialErrors.Success:
+                        break;
                     case CredentialErrors.NotFound:
                         return Enumerable.Empty<Credential>();
                     case CredentialErrors.NoSuchLogonSession:
@@ -52,7 +54,17 @@ namespace poshring
             if (!UnsafeAdvapi32.CredDeleteW(credential.TargetName, credential.Type, 0))
             {
                 var error = (CredentialErrors)Marshal.GetLastWin32Error();
-                throw new CredentialManagerException(error, "Could not delete credential.");
+                switch (error)
+                {
+                    case CredentialErrors.Success:
+                    case CredentialErrors.NotFound:
+                        break;
+                    case CredentialErrors.NoSuchLogonSession:
+                    case CredentialErrors.InvalidFlags:
+                        throw new Win32Exception((int)error);
+                    default:
+                        throw new InvalidOperationException("Unexpected error while removing credential.");
+                }
             }
         }
     }
