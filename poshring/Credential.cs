@@ -116,7 +116,9 @@ namespace poshring
             if (_disposed) return;
 
             _disposed = true;
-            UnsafeAdvapi32.CredFree(_nativeCredential);
+            //Causes crash. FIXME
+            //_nativeCredential.CredentialBlob = IntPtr.Zero;
+            //UnsafeAdvapi32.CredFree(_nativeCredential);
         }
     }
 }
